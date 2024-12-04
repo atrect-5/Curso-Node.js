@@ -5,6 +5,8 @@ const moviesMocks = require('./utils/mocks/moviesMocks')
 
 
 function moviesAPI (app){
+
+    // READ
     const router = express.Router()
     app.use('/api/movies',router)
 
@@ -14,7 +16,7 @@ function moviesAPI (app){
             /*Como no hay aun una base de datos, se accedera a los datos que guardamos en moviesMocks*/
             const moviesList = await Promise.resolve(moviesMocks)
 
-            // Esto significa que hubo exito en la consulta
+            // Esto significa que hubo exito en la consulta y devolvemos en json la respuesta
             res.status(200).json({
                 data:moviesList,
                 message:'todas las peliculas'
@@ -23,6 +25,59 @@ function moviesAPI (app){
             next(err)
         }
     })
+
+
+    // CREATE
+    router.post('/', async (req, res, next) => {
+
+        try{
+            const createdMovie = await Promise.resolve(moviesMocks.movies[0].id)
+            
+            // Esto significa que se creo exitosamente
+            res.status(201).json({
+                data:createdMovie, 
+                message:'created movie'
+            })
+        }catch(err){
+            next(err)
+        }
+    })
+
+
+    // UPDATE 
+    router.put('/:movieId', async (req, res, next) => {
+
+        try{
+            const updatedMovie = await Promise.resolve(moviesMocks.movies[0].id)
+            
+            // Esto significa que se actualizo exitosamente
+            res.status(200).json({
+                data:updatedMovie,
+                message:'updated movie'
+            })
+        }catch(err){
+            next(err)
+        }
+    })
+
+
+    // DELETE
+    router.delete('/:movieId', async (req, res, next) => {
+
+        try{
+            const deletedMovie = await Promise.resolve(moviesMocks.movies[0].id)
+            
+            // Esto significa que se elimino exitosamente
+            res.status(200).json({
+                data:deletedMovie, 
+                message:'deleted movie'
+            })
+        }catch(err){
+            next(err)
+        }
+    })
+
+
 }
 
 module.exports = moviesAPI
