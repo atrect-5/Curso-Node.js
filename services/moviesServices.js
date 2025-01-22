@@ -1,7 +1,7 @@
 
 // Importamos el archivo donde guardamos nuestras peliculas generadas
 const moviesMocks = require('../utils/mocks/moviesMocks')
-
+const MovieSchema = require('../models/moviesModel')
 
 class MoviesServices{
 
@@ -10,7 +10,7 @@ class MoviesServices{
             -tags -> Etiquetas para filtrar peliculas
          */
         /* Response:  Los datos de todas las peliculas registradas o una lista vacia */
-    async getMoviesService(){
+    async getMoviesService({tags}){
         const moviesList = await Promise.resolve(moviesMocks.movies)
         return moviesList || []
     }

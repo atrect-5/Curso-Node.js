@@ -18,7 +18,7 @@ const getMovies = async (req, res, next) => {
         // Esto significa que hubo exito en la consulta y devolvemos en json la respuesta
         res.status(200).json({
             data:moviesList,
-            message:'todas las peliculas'
+            message:'All moviies'
         })
     }catch(err){
         next(err)
@@ -36,7 +36,7 @@ const getOneMovie = async (req, res, next) => {
         // Esto significa que hubo exito en la consulta y devolvemos en json la respuesta
         res.status(200).json({
             data:movie,
-            message:'movie by id'
+            message:'Movie by id'
         })
     }catch(err){
         next(err)
@@ -54,7 +54,7 @@ const createMovie = async (req, res, next) => {
         // Esto significa que se creo exitosamente
         res.status(201).json({
             data:createdMovie, 
-            message:'movie created'
+            message:'Movie created'
         })
     }catch(err){
         next(err)
@@ -74,7 +74,7 @@ const updateMovie = async (req, res, next) => {
         // Esto significa que se actualizo exitosamente
         res.status(200).json({
             data:updatedMovie,
-            message:'movie updated'
+            message:'Movie updated'
         })
     }catch(err){
         next(err)
@@ -92,7 +92,7 @@ const deleteMovie = async (req, res, next) => {
         // Esto significa que se elimino exitosamente
         res.status(200).json({
             data:deletedMovie, 
-            message:'movie deleted'
+            message:'Movie deleted'
         })
     }catch(err){
         next(err)
