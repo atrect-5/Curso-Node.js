@@ -11,7 +11,14 @@ class MoviesServices{
          */
         /* Response:  Los datos de todas las peliculas registradas o una lista vacia */
     async getMoviesService({tags}){
-        const moviesList = await Promise.resolve(moviesMocks.movies)
+        
+        // Creamos la query con los tags que recibimos
+        const query = tags && {tags: {$in:tags}}
+
+        // Buscamos en la base de datos
+        const moviesList = await MovieSchema.find(query)
+
+        // Retornamos los datos encontrados
         return moviesList || []
     }
 
@@ -21,27 +28,28 @@ class MoviesServices{
          */
         /* Response:  Los datos de la pelicula encontrada o un objeto vacio */
     async getOneMovieService(movieId){
-        const movie = await Promise.resolve(moviesMocks.movies[0])
+        const movie = await MovieSchema.findById(movieId)
         return movie || {}
     }
 
     // Se crea una nueva pelicula
         /* Parameters: 
-            -
+            -movie -> Objeto que contiene los datos de la pelicula que se creara
         */
        /* Response: Los datos de la pelicula creada*/
-    async createMovieService(){
-        const movie = await Promise.resolve(moviesMocks.movies[0])
-        return movie
+    async createMovieService(movie){
+        const createdMovie = await MovieSchema.create({...movie})
+        return createdMovie
     }
     
     // Se actualiza una pelicula
         /* Parameters: 
             -movieId -> El id de una pelicula para actualizar sus datos
+            -movie -> Datos de la pelicula que seran actualizados
          */
         /* Response:  Los datos de la pelicula actualizada */
-    async updateMovieService(movieId){ 
-        const updatedMovie = await Promise.resolve(moviesMocks.movies[0])
+    async updateMovieService(movieId, movie){ 
+        const updatedMovie = await MovieSchema.findByIdAndUpdate(movieId, movie, { new:true })
         return updatedMovie
     }
     
@@ -51,7 +59,7 @@ class MoviesServices{
          */
         /* Response:  El id de la pelicula eliminada */
     async deleteMovieService(movieId){
-        const deletedMovie = await Promise.resolve(moviesMocks.movies[0])
+        const deletedMovie = await MovieSchema.findByIdAndDelete(movieId)
         return deletedMovie.id
     }
 

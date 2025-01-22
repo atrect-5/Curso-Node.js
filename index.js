@@ -20,8 +20,8 @@ const COLLECTIONNAME = process.env.COLLECTIONNAME
 const URLPARAMS = process.env.URLPARAMS
 
 // Conectando a la base de datos
-mongoose.connect(`${DBURL}${COLLECTIONNAME}${URLPARAMS}`, {useNewUrlParser: true, useUnifiedTopology: true})
-    .then(()=>{ console.log('Connection to DB successfully') })
+mongoose.connect(`${DBURL}${COLLECTIONNAME}${URLPARAMS}`)
+    .then((res)=>{ console.log('Connection to DB successfully: '+res.connections[0].name) })
     .catch((err)=>{ console.error('DB connection error: ', err) })
     
 // Rutas de la api

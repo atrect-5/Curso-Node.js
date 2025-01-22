@@ -47,9 +47,10 @@ const getOneMovie = async (req, res, next) => {
 const createMovie = async (req, res, next) => {
     // Obtenemos los datos del body, que es donde mandaremos los datos de la pelicula que crearemos
     const {body:movie} = req
+    console.log(movie)
     try{
         // Mandamos llamar el metodo para crear una pelicula mandando como parametro los datos de la pelicula
-        const createdMovie = await moviesServices.createMovieService({movie})
+        const createdMovie = await moviesServices.createMovieService(movie)
 
         // Esto significa que se creo exitosamente
         res.status(201).json({
