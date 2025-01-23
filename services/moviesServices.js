@@ -12,14 +12,19 @@ class MoviesServices{
         /* Response:  Los datos de todas las peliculas registradas o una lista vacia */
     async getMoviesService({tags}){
         
-        // Creamos la query con los tags que recibimos
-        const query = tags && {tags: {$in:tags}}
+        try{
+            // Creamos la query con los tags que recibimos
+            const query = tags && {tags: {$in:tags}}
+    
+            // Buscamos en la base de datos
+            const moviesList = await Movie.find(query)
+            console.log('All movies were get')
+            // Retornamos los datos encontrados
+            return moviesList || []
+        }catch(err){
+            console.log(err)
+        }
 
-        // Buscamos en la base de datos
-        const moviesList = await Movie.find(query)
-
-        // Retornamos los datos encontrados
-        return moviesList || []
     }
 
     // Metodo para obtener una sola pelicula filtrada por id
@@ -28,8 +33,14 @@ class MoviesServices{
          */
         /* Response:  Los datos de la pelicula encontrada o un objeto vacio */
     async getOneMovieService(movieId){
-        const movie = await Movie.findById(movieId)
-        return movie || {}
+        try{
+            const movie = await Movie.findById(movieId)
+            console.log('One movie was got')
+            return movie || {messege:'Movie not found'}
+        }catch(err){
+            console.log(err)
+            return {messege:'Movie not found'}
+        }
     }
 
     // Se crea una nueva pelicula
@@ -38,8 +49,14 @@ class MoviesServices{
         */
        /* Response: Los datos de la pelicula creada*/
     async createMovieService(movie){
-        const createdMovie = await Movie.create(movie)
-        return createdMovie
+        try{
+            const createdMovie = await Movie.create(movie)
+            console.log('A movie has been created')
+            return createdMovie
+        }catch(err){
+            console.log(err)
+            return {messege:'An error occurred while creating the movie'}
+        }
     }
     
     // Se actualiza una pelicula
@@ -49,8 +66,14 @@ class MoviesServices{
          */
         /* Response:  Los datos de la pelicula actualizada */
     async updateMovieService(movieId, movie){ 
-        const updatedMovie = await Movie.findByIdAndUpdate(movieId, movie, { new:true })
-        return updatedMovie
+        try{
+            const updatedMovie = await Movie.findByIdAndUpdate(movieId, movie, { new:true })
+            console.log('A movie has been updated')
+            return updatedMovie || {messege:'Movie not found'}
+        }catch(err){
+            console.log(err)
+            return {messege:'Movie not found'}
+        }
     }
     
     // Se elimina una pelicula
@@ -59,8 +82,14 @@ class MoviesServices{
          */
         /* Response:  El id de la pelicula eliminada */
     async deleteMovieService(movieId){
-        const deletedMovie = await Movie.findByIdAndDelete(movieId)
-        return deletedMovie.id
+        try{
+            const deletedMovie = await Movie.findByIdAndDelete(movieId)
+            console.log('A movie has been deleted')
+            return deletedMovie.id
+        }catch(err){
+            console.log(err)
+            return 'Movie not found'
+        }
     }
 
 }
