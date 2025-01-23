@@ -1,7 +1,7 @@
 
 // Importamos el archivo donde guardamos nuestras peliculas generadas
 const moviesMocks = require('../utils/mocks/moviesMocks')
-const MovieSchema = require('../models/moviesModel')
+const Movie = require('../models/moviesModel')
 
 class MoviesServices{
 
@@ -16,7 +16,7 @@ class MoviesServices{
         const query = tags && {tags: {$in:tags}}
 
         // Buscamos en la base de datos
-        const moviesList = await MovieSchema.find(query)
+        const moviesList = await Movie.find(query)
 
         // Retornamos los datos encontrados
         return moviesList || []
@@ -28,7 +28,7 @@ class MoviesServices{
          */
         /* Response:  Los datos de la pelicula encontrada o un objeto vacio */
     async getOneMovieService(movieId){
-        const movie = await MovieSchema.findById(movieId)
+        const movie = await Movie.findById(movieId)
         return movie || {}
     }
 
@@ -38,7 +38,7 @@ class MoviesServices{
         */
        /* Response: Los datos de la pelicula creada*/
     async createMovieService(movie){
-        const createdMovie = await MovieSchema.create({...movie})
+        const createdMovie = await Movie.create(movie)
         return createdMovie
     }
     
@@ -49,7 +49,7 @@ class MoviesServices{
          */
         /* Response:  Los datos de la pelicula actualizada */
     async updateMovieService(movieId, movie){ 
-        const updatedMovie = await MovieSchema.findByIdAndUpdate(movieId, movie, { new:true })
+        const updatedMovie = await Movie.findByIdAndUpdate(movieId, movie, { new:true })
         return updatedMovie
     }
     
@@ -59,7 +59,7 @@ class MoviesServices{
          */
         /* Response:  El id de la pelicula eliminada */
     async deleteMovieService(movieId){
-        const deletedMovie = await MovieSchema.findByIdAndDelete(movieId)
+        const deletedMovie = await Movie.findByIdAndDelete(movieId)
         return deletedMovie.id
     }
 

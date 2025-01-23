@@ -3,14 +3,14 @@
 const { Schema, model } = require('mongoose')
 
 // Creamos el esquema de las peliculas
-const Movies = new Schema({
+const MovieSchema = new Schema({
     title:{
         type:String,
-        required:true   // Se marca como requerido
+        //required:true   // Se marca como requerido
     },
     year:{
         type:Number,  
-        required:true
+        //required:true
     },
     cover:{
         type:String,
@@ -29,4 +29,4 @@ const Movies = new Schema({
     versionKey:false    // Es una cadena que representa la ruta que se utilizará para el control de versiones
 }) 
 
-module.exports = model( 'MovieSchema', Movies )
+module.exports = model( 'Movie', MovieSchema )

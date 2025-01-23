@@ -13,6 +13,12 @@ const mongoose = require('mongoose')
 // Importamos la funcion que creamos para ver las peliculas guardadas
 const moviesAPI = require('./routes/movies')
 
+
+// Utilizamos un middleware para "parsear" los datos de los objetos
+app.use(express.json())
+app.use(express.urlencoded({extended:false}))
+
+
 /******** CONEXION A LA BASE DE DATOS **********/
 // Obtenemos la url de nuestra base de datos 
 const DBURL = process.env.DBURL

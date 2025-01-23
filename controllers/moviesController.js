@@ -13,7 +13,7 @@ const getMovies = async (req, res, next) => {
         const tags = req.query
 
         // Usamos el metodo de nuestra clase MoviesServices de nuestro servicio, Se le manda un objeto "{}" para filtrar peliculas
-        const moviesList = await moviesServices.getMoviesService({tags})
+        const moviesList = await moviesServices.getMoviesService(tags)
 
         // Esto significa que hubo exito en la consulta y devolvemos en json la respuesta
         res.status(200).json({
@@ -31,7 +31,7 @@ const getOneMovie = async (req, res, next) => {
     const {movieId} = req.params
     try{
         // Se llama al metodo del servicio para obtener una pelicula segun su id
-        const movie = await moviesServices.getOneMovieService({movieId})
+        const movie = await moviesServices.getOneMovieService(movieId)
 
         // Esto significa que hubo exito en la consulta y devolvemos en json la respuesta
         res.status(200).json({
@@ -47,14 +47,13 @@ const getOneMovie = async (req, res, next) => {
 const createMovie = async (req, res, next) => {
     // Obtenemos los datos del body, que es donde mandaremos los datos de la pelicula que crearemos
     const {body:movie} = req
-    console.log(movie)
     try{
         // Mandamos llamar el metodo para crear una pelicula mandando como parametro los datos de la pelicula
         const createdMovie = await moviesServices.createMovieService(movie)
 
         // Esto significa que se creo exitosamente
         res.status(201).json({
-            data:createdMovie, 
+            data:createdMovie,
             message:'Movie created'
         })
     }catch(err){
@@ -70,7 +69,7 @@ const updateMovie = async (req, res, next) => {
     const {body:movie} = req
     try{
         // Llamamos al metodo para actualizar una pelicula mandandole el id para encontrar la pelicula y los datos nuevos
-        const updatedMovie = await moviesServices.updateMovieService({movieId, movie})
+        const updatedMovie = await moviesServices.updateMovieService(movieId, movie)
 
         // Esto significa que se actualizo exitosamente
         res.status(200).json({
@@ -88,7 +87,7 @@ const deleteMovie = async (req, res, next) => {
     const {movieId} = req.params
     try{
         // Utilizamos la funcion para eliminar una pelicula segun su id de nuestro servicio
-        const deletedMovie = await moviesServices.deleteMovieService({movieId})
+        const deletedMovie = await moviesServices.deleteMovieService(movieId)
 
         // Esto significa que se elimino exitosamente
         res.status(200).json({
