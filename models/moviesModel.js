@@ -6,11 +6,11 @@ const { Schema, model } = require('mongoose')
 const MovieSchema = new Schema({
     title:{
         type:String,
-        //required:true   // Se marca como requerido
+        required:true   // Se marca como requerido
     },
     year:{
         type:Number,  
-        //required:true
+        required:true
     },
     cover:{
         type:String,
