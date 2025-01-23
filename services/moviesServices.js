@@ -10,11 +10,11 @@ class MoviesServices{
             -tags -> Etiquetas para filtrar peliculas
          */
         /* Response:  Los datos de todas las peliculas registradas o una lista vacia */
-    async getMoviesService({tags}){
+    async getMoviesService(tags){
         
         try{
             // Creamos la query con los tags que recibimos
-            const query = tags && {tags: {$in:tags}}
+            const query = tags && {tags: {$in:tags.split("-")}}
     
             // Buscamos en la base de datos
             const moviesList = await Movie.find(query)

@@ -10,8 +10,8 @@ const moviesServices = new MoviesServices()
 const getMovies = async (req, res, next) => {
     try{
         // Etiquetas para filtrar peliculas (Datos en la query (url))
-        const tags = req.query
-
+        const {tags} = req.query
+        
         // Usamos el metodo de nuestra clase MoviesServices de nuestro servicio, Se le manda un objeto "{}" para filtrar peliculas
         const moviesList = await moviesServices.getMoviesService(tags)
 
