@@ -8,7 +8,8 @@ const dotenv = require('dotenv').config()
 const port = process.env.PORT 
 // Libreria que se encargara de la conexion a la base de datos 
 const mongoose = require('mongoose')
-
+// Importamos nuestro middleware para el manejo de errores
+const { logError, handleError } = require('./middlewares/errorMiddleware')
 
 // Importamos la funcion que creamos para ver las peliculas guardadas
 const moviesAPI = require('./routes/movies')
@@ -34,6 +35,9 @@ mongoose.connect(`${DBURL}${COLLECTIONNAME}${URLPARAMS}`)
 app.get('/', (req, res) => res.send('Welcome to the app c:'))
 moviesAPI(app)
 
+// Usamos nuestro middleware despues de nuestras rutas
+app.use(logError)
+app.use(handleError)
 
 app.listen(port, () => 
     {console.log(`Listening on port ${port}!
