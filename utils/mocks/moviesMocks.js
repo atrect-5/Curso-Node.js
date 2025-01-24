@@ -289,8 +289,28 @@ const movies = [{
       "Adventure|Comedy|Romance",
       "Animation|Horror"
     ]
-  }]
+  }
+]
+
+
+// Se obtienen las peliculas filtradas segun los tags que se envien
+const filterMoviesMocks =tags=> movies.filter(movie=>movie.tags.includes(tags))
+
+// Esta clase obtiene las peliculas de este mismo elemento (Hace el trabajo del servicio moviesServices, esto para poder probar las rutas por separado)
+class ServicesMoviesMocks {
+  // Este metodo obtiene las peliculas de la lista 'movies'
+  async getMovies(){
+    return Promise.resolve(movies)
+  }
+  // Este metodo devuelve la primer pelicula de la lista (Suponiendo el servicio que regresa la pelicula creada)
+  async createMovie(){
+    return Promise.resolve(movies[0])
+  }
+}
+
 
 module.exports={
-    movies
+    movies,
+    filterMoviesMocks,
+    ServicesMoviesMocks
 }
