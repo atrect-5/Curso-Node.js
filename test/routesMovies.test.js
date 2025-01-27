@@ -22,7 +22,7 @@ describe('Movies Routes', ()=>{
     const request = testServer(route)
 
     // Funcion que probara el GET
-    describe('GET /Movies', ()=>{
+    describe('GET / Movies', ()=>{
 
         // En este caso testearemos que el status sea 200 (que hubo exito)
         it('Should respond with status 200',(done)=>{
@@ -41,12 +41,83 @@ describe('Movies Routes', ()=>{
             done()
         })
 
-        // Aqui provaremos la respuesta de cuando se crea una nueva pelicula
+        // En este caso testearemos que nos devuelva una sola pelicula segun el id
+        it('Should respond with a one movie',(done)=>{
+            request.get('/api/movies/6791aac69169f89ca238de19').expect(200).end((err, res)=>{
+                assert.deepEqual(res.body,{
+                    data:movies[0],
+                    message:'Getting one movie by id'
+                })
+            })
+            done()
+        })
+
+        
+    })
+    
+    // Funcion que probara el metodo POST
+    describe('POST / Movies', ()=>{
+        
         it('Should respond with status 200',(done)=>{
             request.post('/api/movies').expect(201)
             done()
         })
 
+        /*
+        it('Should respond with the created movie',(done)=>{
+
+            request.post('/api/movies')
+            .set('Content-Type', 'application/json')
+            .send(movies[0])
+            .end((err, res)=>{
+                assert.deepEqual(res.body,{
+                    data:movies[0],
+                    message:'Creating movie'
+                })
+            })
+            done()
+        })
+        */
+            
+    
+    })
+
+    // Funcion que probara el metodo PUT
+    describe('PUT / Movies', ()=>{
+        
+        it('Should respond with status 200',(done)=>{
+            request.put('/api/movies/6791aac69169f89ca238de19').expect(200)
+            done()
+        })
+
+        it('Should respond with a one movie',(done)=>{
+            request.put('/api/movies/6791aac69169f89ca238de19')
+            .set('Content-Type', 'application/json')
+            .send(movies[0])
+            .end((err, res)=>{
+                assert.deepEqual(res.body,{
+                    data:movies[0],
+                    message:'Updating movie'
+                })
+            })
+            done()
+        })
+    
+    })
+
+    // Funcion que probara el metodo DELETE
+    describe('DELETE / Movies', ()=>{
+        
+        it('Should respond with the id of the movie that was deleted',(done)=>{
+            request.delete('/api/movies/6791aac69169f89ca238de19').expect(200).end((err, res)=>{
+                assert.deepEqual(res.body,{
+                    data:movies[0].id,
+                    message:'Getting one movie by id'
+                })
+            })
+            done()
+        })
+    
     })
 
 })

@@ -302,10 +302,29 @@ class ServicesMoviesMocks {
   async getMovies(){
     return Promise.resolve(movies)
   }
-  // Este metodo devuelve la primer pelicula de la lista (Suponiendo el servicio que regresa la pelicula creada)
-  async createMovie(){
+
+  // Este metodo devuelve la primer pelicula como si se obtuviera por id
+  async getOneMovie(){
     return Promise.resolve(movies[0])
   }
+
+  /*
+  // Este metodo devuelve la primer pelicula de la lista (Suponiendo el servicio que regresa la pelicula creada)
+  async createMovie(movie){
+    return Promise.resolve(movies[0])
+  }
+  */
+
+  // Este metodo devuelve la primer pelicula de la lista (Suponiendo el servicio que regresa la pelicula actualizada)
+  async updateMovie(movie){
+    return Promise.resolve(movies[0])
+  }
+
+  // Este metodo devuelve el id de la primer pelicula, como si la ubiera eliminado
+  async deleteMovie(){
+    return Promise.resolve(movies[0].id)
+  }
+
 }
 
 
