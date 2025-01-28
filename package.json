@@ -4,6 +4,7 @@
   "description": "proyecto de una api para el curso de Node.js de Azul School",
   "main": "index.js",
   "scripts": {
+    "start": "node index.js",
     "dev": "nodemon index.js",
     "test": "mocha --exit"
   },
