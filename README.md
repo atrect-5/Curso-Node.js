@@ -25,15 +25,27 @@ Se trata de una API que se usara para hacer un CRUD a una base de datos en la qu
     * /api/movies/:movieId
           -> Busca una pelicula segun el Id de req.params, elimina la pelicula de la base de datos y regresa el id de la pelicula que se elimino
   
-## Las estructura de la peliculas es:
-- "title" : String
-- "year" : Number
-- "cover" : String
-- "description" : String
-- "duration" : Number
-- "contentRating" : String
-- "source" : String
-- "tags" : [String]
+## Las estructura de la peliculas es (Json):
+```
+{
+    title : {
+        type : String,
+        required : true 
+    },
+    year : {
+        type : Number,  
+        required : true
+    },
+    cover : String,
+    description : String,
+    duration : String,
+    contentRating : String,
+    source : String,
+    tags : [String]
+    createdAt : Date
+    updatedAt : Date
+}
+```
 
 
 > La API responde con un objeto donde:
