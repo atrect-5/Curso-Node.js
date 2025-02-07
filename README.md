@@ -12,7 +12,7 @@ Se trata de una API que se usara para hacer un CRUD a una base de datos en la qu
 ## Los endpoints disponibles de esta API son: 
 - GET
     * /api/movies  
-          -> Regresa una lista de todas las peliculasque tengan las 'tags' mandadas en el req.query (Para mas de un tag, se separan con '|' sin espacios) (Sin tags, regresa todas las peliculas)
+          -> Regresa una lista de todas las peliculasque tengan las 'tags' mandadas en el req.query (Para mas de un tag, se separan con '-' sin espacios) (Sin tags, regresa todas las peliculas) Ejemplo: `/api/movies?tags=Animated-Comedy`
     * /api/movies/:movieId  
           -> Regresa la informacion de una pelicula segun su Id (Se obtiene de req.params)
 - CREATE
@@ -42,12 +42,17 @@ Se trata de una API que se usara para hacer un CRUD a una base de datos en la qu
     contentRating : String,
     source : String,
     tags : [String]
+    tiketPrice:Number,
+    isOnCinemas:Boolean,
+    schedules:[{
+        time:Date
+    }]
     createdAt : Date
     updatedAt : Date
 }
-```
-
-
+```  
+> 'createdAt' y 'updatedAt' Se asignan automaticamente, no es necesario mandar esos datos al crear o actualizar un registro
+  
 > La API responde con un objeto donde:
 > { "data" : data, "message" : 'message'}
 > 'data' son los datos retornados por la API indicados aqui arriba y 'message' es la accion que se realizo
