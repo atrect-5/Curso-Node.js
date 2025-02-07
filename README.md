@@ -6,3 +6,30 @@ Esta practica utiliza Express.js para iniciar el servidor y MongoDB como motor d
 La base de datos de esta practica se encuentra en almacenamiento gratuito de Mongo Atlas
 
 Se trata de una API que se usara para hacer un CRUD a una base de datos en la que se guardaran datos de peliculas. Los datos que se guardan de cada pelicula encuentran en el Schema en models/moviesModel.js
+
+
+      
+## Los endpoints disponibles de esta API son: 
+- GET
+    * /api/movies  
+          -> Regresa una lista de todas las peliculasque tengan las 'tags' mandadas en el req.query (Para mas de un tag, se separan con '|' sin espacios) (Sin tags, regresa todas las peliculas)
+    * /api/movies/:movieId  
+          -> Regresa la informacion de una pelicula segun su Id (Se obtiene de req.params)
+- CREATE
+    * /api/movies
+          -> Crea una nueva pelicula en la base de datos, obteniendo los datos de la pelicula del req.body y regresa la informacion de la pelicula creada
+- PUT
+    * /api/movies/:movieId
+          -> Busca una pelicula segun el Id de req.params, actualiza la informacion de la pelicula con la obtenida de req.body y regresa los datos de la nueva pelicula guardada
+- DELETE
+    * /api/movies/:movieId
+          -> Busca una pelicula segun el Id de req.params, elimina la pelicula de la base de datos y regresa el id de la pelicula que se elimino
+
+
+> La API responde con un objeto donde:
+> { "data" : data, "message" : 'message'}
+> 'data' son los datos retornados por la API indicados aqui arriba y 'message' es la accion que se realizo
+
+> En caso de error, respondera con un objeto donde:
+> { "error" : "error message" }
+> 'error' es el mensaje de error
