@@ -17,13 +17,18 @@ const MovieSchema = new Schema({
         default:'https://media.istockphoto.com/id/1415203156/es/vector/p%C3%A1gina-de-error-icono-vectorial-de-p%C3%A1gina-no-encontrada-en-el-dise%C3%B1o-de-estilo-de-l%C3%ADnea.jpg?s=612x612&w=0&k=20&c=nss_aWPtTb0hpc4oiGfFs_PGfihrNwVX06wxkWVkBfQ='
     },
     description:String,
-    duration:String,
+    duration:Number,
     contentRating:String,
     source:{
         type:String,
         default:'https://media.istockphoto.com/id/1415203156/es/vector/p%C3%A1gina-de-error-icono-vectorial-de-p%C3%A1gina-no-encontrada-en-el-dise%C3%B1o-de-estilo-de-l%C3%ADnea.jpg?s=612x612&w=0&k=20&c=nss_aWPtTb0hpc4oiGfFs_PGfihrNwVX06wxkWVkBfQ='
     },
-    tags:[String]
+    tags:[String],
+    tiketPrice:Number,
+    isOnCinemas:Boolean,
+    schedules:[{
+        time:Date
+    }]
 },{
     timestamps:true,     // Marcas de tiempo que se utilizan para registrar la fecha y la hora exacta de un evento.
     versionKey:false    // Es una cadena que representa la ruta que se utilizará para el control de versiones
