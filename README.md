@@ -60,3 +60,6 @@ Se trata de una API que se usara para hacer un CRUD a una base de datos en la qu
 > En caso de error, respondera con un objeto donde:
 > { "error" : "error message" }
 > 'error' es el mensaje de error
+
+> Version de node con la que se realizo el proyecto: v20.17.0
+> Version npm con la que se realizo el proyecto: 10.8.2
