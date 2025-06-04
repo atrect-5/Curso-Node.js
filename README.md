@@ -63,3 +63,5 @@ Se trata de una API que se usara para hacer un CRUD a una base de datos en la qu
 
 > Version de node con la que se realizo el proyecto: v20.17.0
 > Version npm con la que se realizo el proyecto: 10.8.2
+  
+El proyecto esta publicado en Heroku
