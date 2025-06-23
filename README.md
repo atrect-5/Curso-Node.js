@@ -38,13 +38,13 @@ Se trata de una API que se usara para hacer un CRUD a una base de datos en la qu
     },
     cover : String,
     description : String,
-    duration : String,
+    duration : Number,
     contentRating : String,
     source : String,
     tags : [String]
-    tiketPrice:Number,
-    isOnCinemas:Boolean,
-    schedules:[{
+    tiketPrice : Number,
+    isOnCinemas : Boolean,
+    schedules : [{
         time:Date
     }]
     createdAt : Date
