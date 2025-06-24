@@ -1,4 +1,3 @@
-
 // Estructura para levantar el servidor
 const express = require('express')
 const app = express()
@@ -41,9 +40,14 @@ mongoose.connect(`${DBURL}${COLLECTIONNAME}${URLPARAMS}`)
     .catch((err)=>{ console.error('DB connection error: ', err) })
     
 // Rutas de la api
-// Documentación Swagger en la ruta principal
-app.use('/', swaggerUi.serve, swaggerUi.setup(swaggerDocument))
-// app.get('/', (req, res) => res.send('Welcome to the app c:'))
+// Documentación Swagger en la ruta /docs
+app.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument))
+app.get('/', (req, res) =>
+  res.send(`
+    <h1>Welcome to the app c:</h1>
+    <p>Visita la <a href="/docs" style="font-weight:bold; color:#1976d2;">documentación de la API (Swagger)</a></p>
+  `)
+)
 moviesAPI(app)
 
 // Usamos nuestro middleware despues de nuestras rutas
