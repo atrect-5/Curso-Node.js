@@ -17,10 +17,10 @@ const swaggerDocument = require('./docs/swagger.json')
 const moviesAPI = require('./routes/movies')
 
 // Archivo de configuracion del cors para permitir el acceso a solo determinados servidores
-//const corsConfig = {origin:['http://www.Pagina-Con-Acceso-Al-API.com', 'http://www.Pagina-2.com']}
+const corsConfig = {origin:['https://gentle-sea-67216-22c20027ecbb.herokuapp.com/', 'http://localhost:3001', 'http://localhost:3000', 'https://atrect-5.github.io/Curso-de-React/']}
 
 // Configuramos el cors de la app 
-app.use(cors())
+app.use(cors(corsConfig))
 // app.use(cors(corsConfig))  // Asi seria para permitir el acceso a determinados servidores
 
 // Utilizamos un middleware para "parsear" los datos de los objetos
