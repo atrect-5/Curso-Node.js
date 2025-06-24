@@ -1,0 +1,152 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "API de Películas",
+    "version": "1.0.0",
+    "description": "Documentación de la API de películas."
+  },
+  "servers": [
+    {
+      "url": "http://localhost:3001",
+      "description": "Servidor local"
+    },
+    {
+      "url": "https://gentle-sea-67216-22c20027ecbb.herokuapp.com/",
+      "description": "Servidor de producción (Heroku)"
+    }
+  ],
+  "paths": {
+    "/api/movies": {
+      "get": {
+        "summary": "Obtener todas las películas",
+        "responses": {
+          "200": {
+            "description": "Lista de películas"
+          }
+        }
+      },
+      "post": {
+        "summary": "Crear una nueva película",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Pelicula"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Película creada"
+          }
+        }
+      }
+    },
+    "/api/movies/{movieId}": {
+      "get": {
+        "summary": "Obtener una película por ID",
+        "parameters": [
+          {
+            "name": "movieId",
+            "in": "path",
+            "description": "ID de la película",
+            "required": true,
+            "schema": { "type": "string" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Película encontrada"
+          },
+          "404": {
+            "description": "Película no encontrada"
+          }
+        }
+      },
+      "put": {
+        "summary": "Actualizar una película por ID",
+        "parameters": [
+          {
+            "name": "movieId",
+            "in": "path",
+            "description": "ID de la película",
+            "required": true,
+            "schema": { "type": "string" }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Pelicula"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Película actualizada"
+          },
+          "404": {
+            "description": "Película no encontrada"
+          }
+        }
+      },
+      "delete": {
+        "summary": "Eliminar una película por ID",
+        "parameters": [
+          {
+            "name": "movieId",
+            "in": "path",
+            "description": "ID de la película",
+            "required": true,
+            "schema": { "type": "string" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Película eliminada"
+          },
+          "404": {
+            "description": "Película no encontrada"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Pelicula": {
+        "type": "object",
+        "properties": {
+          "title": { "type": "string" },
+          "year": { "type": "integer" },
+          "cover": { "type": "string" },
+          "description": { "type": "string" },
+          "duration": { "type": "integer" },
+          "contentRating": { "type": "string" },
+          "source": { "type": "string" },
+          "tags": {
+            "type": "array",
+            "items": { "type": "string" }
+          },
+          "tiketPrice": { "type": "number" },
+          "isOnCinemas": { "type": "boolean" },
+          "schedules": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "time": { "type": "string", "format": "date-time" }
+              }
+            }
+          }
+        },
+        "required": ["title", "year"]
+      }
+    }
+  }
+}

@@ -10,6 +10,9 @@ const mongoose = require('mongoose')
 const { logError, handleError } = require('./middlewares/errorMiddleware')
 // Dependencia que nos permitira configurar nuestra API para poder acceder desde un agente externo a nuestro servidor
 const cors = require('cors')
+// Importamos los archivos y dependencias para mostrar la documentacion de la API con swagger
+const swaggerUi = require('swagger-ui-express')
+const swaggerDocument = require('./docs/swagger.json')
 
 // Importamos la funcion que creamos para ver las peliculas guardadas
 const moviesAPI = require('./routes/movies')
@@ -38,7 +41,9 @@ mongoose.connect(`${DBURL}${COLLECTIONNAME}${URLPARAMS}`)
     .catch((err)=>{ console.error('DB connection error: ', err) })
     
 // Rutas de la api
-app.get('/', (req, res) => res.send('Welcome to the app c:'))
+// Documentación Swagger en la ruta principal
+app.use('/', swaggerUi.serve, swaggerUi.setup(swaggerDocument))
+// app.get('/', (req, res) => res.send('Welcome to the app c:'))
 moviesAPI(app)
 
 // Usamos nuestro middleware despues de nuestras rutas
