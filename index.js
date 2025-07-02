@@ -17,7 +17,7 @@ const swaggerDocument = require('./docs/swagger.json')
 const moviesAPI = require('./routes/movies')
 
 // Archivo de configuracion del cors para permitir el acceso a solo determinados servidores
-const corsConfig = {origin:['https://gentle-sea-67216-22c20027ecbb.herokuapp.com/', 'http://localhost:3001', 'http://localhost:3000', 'https://atrect-5.github.io/Curso-de-React/']}
+const corsConfig = {origin:['https://gentle-sea-67216-22c20027ecbb.herokuapp.com/', 'http://localhost:3001', 'http://localhost:3000', 'https://atrect-5.github.io']}
 
 // Configuramos el cors de la app 
 app.use(cors(corsConfig))
